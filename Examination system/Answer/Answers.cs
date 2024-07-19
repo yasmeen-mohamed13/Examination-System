@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Examination_system.Answer
 {
-    internal class Answer
+    internal class Answers
     {
         public int Id { get; set; }
         public string? AnswerText { get; set; }
 
-        public Answer()
+        public Answers()
         {
 
         }
-        public Answer(int Id, string AnswerText)
+        public Answers(int Id, string AnswerText)
         {
             this.Id = Id;
             this.AnswerText = AnswerText;

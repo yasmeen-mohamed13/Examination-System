@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Examination_system.Question
 {
-    internal class TrueFalseQuestion
+    public class TrueFalseQuestion
     {
     }
 }

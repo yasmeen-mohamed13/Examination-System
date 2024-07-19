@@ -23,7 +23,8 @@ namespace Examination_system.Exame
 
         public void ShowTimeAndNumOfQuestions(int Time, int NumOfQuestions)
         {
-            Console.WriteLine($"Time: {Time}, Number of Questions: {NumOfQuestions}");
+            Console.WriteLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTime OF Exame: {40} " +
+                $"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNumber OF Questions: {88}");
         }
     }
 }
