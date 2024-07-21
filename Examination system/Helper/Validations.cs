@@ -67,7 +67,7 @@ namespace Examination_system.Helper
         public static string ValidateMatchStrings(string firtMatch,string secondMatch)
         {
             string input = Console.ReadLine() ?? "".ToLower(); ;
-            while (input.Length< firtMatch.Length && input.Length< secondMatch.Length)
+            while (input.Length< firtMatch.Length && input.Length< secondMatch.Length || input.Length> firtMatch.Length && input.Length > secondMatch.Length)
             {
                 Console.WriteLine($"Please Enter valid choose : \n{firtMatch} \n{secondMatch}");
                 input = Console.ReadLine() ?? "".ToLower();

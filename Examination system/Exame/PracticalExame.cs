@@ -10,31 +10,31 @@ namespace Examination_system.Exame
 {
     internal class PracticalExame : BaseExame
     {
-        public MCQQuestion[] MCQQuestions { get; set; }
+        public BaseQuestion[]? Questions { get; set; }
         public PracticalExame()
         {
             MCQQuestions = new MCQQuestion[0];
         }
-        public PracticalExame(int Time,int NumOfQuestions, MCQQuestion[]mCQQuestions):base(Time,NumOfQuestions)
+        public PracticalExame(int Time,int NumOfQuestions, BaseQuestion[]questions):base(Time,NumOfQuestions)
         {
-            MCQQuestions=mCQQuestions;
-        }
+            Questions=questions;
+        }  
         public override void Display()
         {
             ShowTimeAndNumOfQuestions(Time, NumOfQuestions);
-            DisplayQuestionsArray.DisplayQuestionArray(null, MCQQuestions, false);
+            DisplayQuestionsArray.DisplayQuestionArray(Questions ?? new BaseQuestion[0], false);
             Console.Clear();
             DisplayExameWithRightAnswer();
         }
         public void DisplayExameWithRightAnswer()
         {
-            if (MCQQuestions.Length > 0)
+            if (Questions?.Length > 0)
             {
-                for (int i = 0; i < MCQQuestions.Length; i++)
+                for (int i = 0; i < Questions.Length; i++)
                 {
-                    MCQQuestions[i].displayQuestion();
+                    Questions[i].displayQuestion();
                     Console.WriteLine("Enter Your Answer ");
-                    Console.WriteLine($"The Right Answer is : {MCQQuestions[i].RightAnswer}");
+                    Console.WriteLine($"The Right Answer is : {Questions[i].RightAnswer}");
                     Console.WriteLine("=======================================================");
                 }
             }

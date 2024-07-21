@@ -26,7 +26,5 @@ namespace Examination_system.Exame
             Console.WriteLine("=================================================");
         }
 
-
-    
     }
 }

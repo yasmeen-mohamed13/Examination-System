@@ -54,36 +54,16 @@ namespace Examination_system.Subjects
             Console.WriteLine("Enter the number of question in this Exame");
             int numOfQuestions = Validations.ValidateNumbers();
             Console.Clear();
+            BaseQuestion[] questions=BaseQuestion.CreateQuestionsArray(numOfQuestions);
 
             if (ExameType?.CompareTo("practical") < 0)
             {
-                Console.WriteLine("How many True or False Questions you will add ?");
-                int trueFalseArraySize = Validations.ValidateSizeOfQuestionArray(numOfQuestions);
-                int MCQArraySize = numOfQuestions - trueFalseArraySize;
-
-                TrueFalseQuestion[] trueFalseQuestions = TrueFalseQuestion.CreateQuestionsArray(trueFalseArraySize);
-                MCQQuestion[] mCQQuestions = MCQQuestion.CreateQuestionsArray(MCQArraySize);
-                
-                if (trueFalseArraySize > 0 && MCQArraySize > 0)
-                {
-                    FinalExame finalExame = new FinalExame(timeOfExame, numOfQuestions, trueFalseQuestions, mCQQuestions);
-                    return finalExame;
-                }
-                else if (trueFalseArraySize > 0)
-                {
-                    FinalExame finalExame = new FinalExame(timeOfExame, numOfQuestions, trueFalseQuestions);
-                    return finalExame;
-                }
-                else
-                {
-                    FinalExame finalExame = new FinalExame(timeOfExame, numOfQuestions, mCQQuestions);
-                    return finalExame;
-                }
+                FinalExame finalExame=new FinalExame(timeOfExame,numOfQuestions,questions);
+                return finalExame;
             }
             else
             {
-                MCQQuestion[] mCQQuestions = MCQQuestion.CreateQuestionsArray(numOfQuestions);
-                PracticalExame practicalExame = new PracticalExame(timeOfExame, numOfQuestions, mCQQuestions);
+                PracticalExame practicalExame = new PracticalExame(timeOfExame,numOfQuestions,questions);
                 return practicalExame;
             }
         }

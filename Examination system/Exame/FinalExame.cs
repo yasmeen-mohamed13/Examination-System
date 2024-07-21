@@ -11,29 +11,19 @@ namespace Examination_system.Exame
 {
     internal class FinalExame : BaseExame
     {
-        public TrueFalseQuestion[]? TrueFalseQuestions { get; set; }
-        public MCQQuestion[]? MCQQuestions { get; set; }
+        public BaseQuestion[]? Questions { get; set; }
         public FinalExame()
         {
   
         }
-        public FinalExame(int Time,int NumOfQuestions, TrueFalseQuestion[] trueFalseQuestions ,MCQQuestion[] mCQQuestions) : base(Time, NumOfQuestions)
+        public FinalExame(int Time,int NumOfQuestions, BaseQuestion[] questions) : base(Time, NumOfQuestions)
         {
-            TrueFalseQuestions = trueFalseQuestions;
-            MCQQuestions = mCQQuestions;
-        } 
-        public FinalExame(int Time,int NumOfQuestions, TrueFalseQuestion[] trueFalseQuestions) : base(Time, NumOfQuestions)
-        {
-            TrueFalseQuestions = trueFalseQuestions;
-        }
-        public FinalExame(int Time,int NumOfQuestions, MCQQuestion[] mCQQuestions) : base(Time, NumOfQuestions)
-        {
-            MCQQuestions = mCQQuestions;
+            Questions = questions;
         }
         public override void Display()
         {
             ShowTimeAndNumOfQuestions(Time, NumOfQuestions);
-            DisplayQuestionsArray.DisplayQuestionArray(TrueFalseQuestions, MCQQuestions, true);
+            DisplayQuestionsArray.DisplayQuestionArray(Questions??new BaseQuestion[0], true);
         }
     }
 }
