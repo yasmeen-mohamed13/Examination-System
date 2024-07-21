@@ -1,4 +1,5 @@
-﻿using Examination_system.Question;
+﻿using Examination_system.Answer;
+using Examination_system.Question;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,61 @@ namespace Examination_system.Helper
 {
     public static class DisplayQuestionsArray
     {
-        public static void DisplayTrueFalseArray(TrueFalseQuestion[]trueFalseQuestions)
+        public static void DisplayQuestionArray(TrueFalseQuestion[]? trueFalseQuestions, MCQQuestion[]? mCQQuestions,bool flag)
         {
-            for (int i=0;i<trueFalseQuestions.Length;i++)
+            //if true = final exame
+            if (flag)
             {
-                Console.WriteLine($"{trueFalseQuestions[i].ToString()}");
+                int TotalGrade = 0;
+                if (trueFalseQuestions?.Length>0)
+                {
+                    for (int i = 0; i < trueFalseQuestions.Length; i++)
+                    {
+                        trueFalseQuestions[i].displayQuestion();
+                        Console.WriteLine("Enter Your Answer : ");
+                        int userAnswer = Validations.ValidateRightAnswerNumber(true);
+                        TotalGrade += CalculateGrade(userAnswer, trueFalseQuestions[i].RightAnswer, trueFalseQuestions[i].Mark);
+                        Console.WriteLine("==============================================");
+                    }
+                }
+                if(mCQQuestions?.Length>0)
+                {
+                    for (int i = 0; i < mCQQuestions.Length; i++)
+                    {
+                        mCQQuestions[i].displayQuestion();
+                        Console.WriteLine("Enter Your Answer : ");
+                        int userAnswer = Validations.ValidateRightAnswerNumber(true);
+                        TotalGrade += CalculateGrade(userAnswer, mCQQuestions[i].RightAnswer, mCQQuestions[i].Mark);
+                        Console.WriteLine("==============================================");
+                    }
+                }
+                Console.WriteLine($"Your Grade is : {TotalGrade}");
             }
+            // false = practical exame
+            else
+            {
+                if (mCQQuestions?.Length>0)
+                {
+                    for (int i = 0; i < mCQQuestions.Length; i++)
+                    {
+                        mCQQuestions[i].displayQuestion();
+                        Console.WriteLine($"Mark Of This Question : {mCQQuestions[i].Mark}");
+                        Console.WriteLine();
+                        Console.WriteLine("Enter Your Answer ");
+                        int userAnswer = Validations.ValidateRightAnswerNumber(false);
+                        Console.WriteLine("=======================================================");
+                    }
+                }
+            }
+        }
+        public static int CalculateGrade(int userAnswer, int rightAnswer, int mark)
+        {
+            if (userAnswer == rightAnswer)
+            {
+                return mark;
+            }
+            return 0;
         }
 
-        public static void DisplayMCQArray(MCQQuestion[]mCQQuestions)
-        {
-            for (int i=0;i<mCQQuestions.Length;i++)
-            {
-                Console.WriteLine($"{mCQQuestions[i].ToString()}");
-            }
-        }
     }
 }

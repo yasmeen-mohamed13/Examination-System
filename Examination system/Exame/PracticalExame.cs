@@ -22,7 +22,22 @@ namespace Examination_system.Exame
         public override void Display()
         {
             ShowTimeAndNumOfQuestions(Time, NumOfQuestions);
-           DisplayQuestionsArray.DisplayMCQArray(MCQQuestions);
+            DisplayQuestionsArray.DisplayQuestionArray(null, MCQQuestions, false);
+            Console.Clear();
+            DisplayExameWithRightAnswer();
+        }
+        public void DisplayExameWithRightAnswer()
+        {
+            if (MCQQuestions.Length > 0)
+            {
+                for (int i = 0; i < MCQQuestions.Length; i++)
+                {
+                    MCQQuestions[i].displayQuestion();
+                    Console.WriteLine("Enter Your Answer ");
+                    Console.WriteLine($"The Right Answer is : {MCQQuestions[i].RightAnswer}");
+                    Console.WriteLine("=======================================================");
+                }
+            }
         }
     }
 }

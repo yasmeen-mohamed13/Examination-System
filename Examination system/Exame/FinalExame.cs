@@ -11,41 +11,29 @@ namespace Examination_system.Exame
 {
     internal class FinalExame : BaseExame
     {
-        public TrueFalseQuestion[] TrueFalseQuestions { get; set; }
-        public MCQQuestion[] MCQQuestions { get; set; }
+        public TrueFalseQuestion[]? TrueFalseQuestions { get; set; }
+        public MCQQuestion[]? MCQQuestions { get; set; }
         public FinalExame()
         {
-            TrueFalseQuestions = new TrueFalseQuestion[0];
-            MCQQuestions = new MCQQuestion[0];
+  
         }
         public FinalExame(int Time,int NumOfQuestions, TrueFalseQuestion[] trueFalseQuestions ,MCQQuestion[] mCQQuestions) : base(Time, NumOfQuestions)
         {
             TrueFalseQuestions = trueFalseQuestions;
             MCQQuestions = mCQQuestions;
+        } 
+        public FinalExame(int Time,int NumOfQuestions, TrueFalseQuestion[] trueFalseQuestions) : base(Time, NumOfQuestions)
+        {
+            TrueFalseQuestions = trueFalseQuestions;
+        }
+        public FinalExame(int Time,int NumOfQuestions, MCQQuestion[] mCQQuestions) : base(Time, NumOfQuestions)
+        {
+            MCQQuestions = mCQQuestions;
         }
         public override void Display()
         {
-            int studentChoose;
-            ShowTimeAndNumOfQuestions(Time,NumOfQuestions);
-            Console.WriteLine("What Do You Prefear To Start With : 1- True of False \n2- MSQ");
-            while (!int.TryParse(Console.ReadLine(), out studentChoose) || studentChoose > 2 || studentChoose == 0)
-            {
-                Console.WriteLine("Please Enter Valid Choose 1 or 2");
-            }
-
-            Console.Clear();
-
-            if (studentChoose==1)
-            {
-                DisplayQuestionsArray.DisplayTrueFalseArray(TrueFalseQuestions);
-                DisplayQuestionsArray.DisplayMCQArray(MCQQuestions);
-            }
-            else
-            {
-                DisplayQuestionsArray.DisplayMCQArray(MCQQuestions);
-                DisplayQuestionsArray.DisplayTrueFalseArray(TrueFalseQuestions);
-            }
-            
+            ShowTimeAndNumOfQuestions(Time, NumOfQuestions);
+            DisplayQuestionsArray.DisplayQuestionArray(TrueFalseQuestions, MCQQuestions, true);
         }
     }
 }

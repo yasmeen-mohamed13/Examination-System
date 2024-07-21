@@ -20,11 +20,13 @@ namespace Examination_system.Exame
             this.NumOfQuestions = NumOfQuestions;
         }
         public abstract void Display();
-
         public void ShowTimeAndNumOfQuestions(int Time, int NumOfQuestions)
         {
-            Console.WriteLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTime OF Exame: {40} " +
-                $"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNumber OF Questions: {88}");
+            Console.WriteLine($"Time OF Exame : {Time}          Number Of Questions : {NumOfQuestions}  ");
+            Console.WriteLine("=================================================");
         }
+
+
+    
     }
 }
