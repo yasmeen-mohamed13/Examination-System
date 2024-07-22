@@ -51,10 +51,10 @@ namespace Examination_system.Subjects
             Console.Clear();
 
             //Enter the Number of Question
-            Console.WriteLine("Enter the number of question in this Exame");
+            Console.WriteLine("Enter the number of questions in this Exame");
             int numOfQuestions = Validations.ValidateNumbers();
             Console.Clear();
-            BaseQuestion[] questions=BaseQuestion.CreateQuestionsArray(numOfQuestions);
+            BaseQuestion[] questions=BaseQuestion.CreateQuestionsArray(numOfQuestions , ExameType??"");
 
             if (ExameType?.CompareTo("practical") < 0)
             {

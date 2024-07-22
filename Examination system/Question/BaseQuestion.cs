@@ -15,6 +15,7 @@ namespace Examination_system.Question
         public int Mark { get; set; }
         public int RightAnswer { get; set; }
         public Answers[] Answer { get; set; }
+
         public BaseQuestion()
         {
           Answer = new Answers[0];
@@ -38,12 +39,18 @@ namespace Examination_system.Question
             
             Console.ResetColor();
         }
-        public static BaseQuestion CreateQuestion(int index)
+        public static BaseQuestion CreateQuestion(int index,string typeofexame)
         {
-
-            Console.WriteLine($"Enter Header of Question {index + 1} if it will be ( MCQ - True or False )");
-            
-            string Header = Validations.ValidateMatchStrings("mcq", "true or false");
+            string Header;
+            if (typeofexame.ToLower().CompareTo("practical") < 0)
+            {
+                Console.WriteLine($"Enter Header of Question {index + 1} if it will be ( MCQ - True or False )");
+                Header = Validations.ValidateMatchStrings("mcq", "true or false");
+            }
+            else
+            {
+                Header =$"mcq";
+            }
 
             Console.WriteLine("Enter the question");
             
@@ -103,7 +110,7 @@ namespace Examination_system.Question
                 };
             }
         }
-        public static BaseQuestion[] CreateQuestionsArray(int size)
+        public static BaseQuestion[] CreateQuestionsArray(int size , string typeofexame)
         {
             BaseQuestion [] questions = new BaseQuestion[size];
             
@@ -111,7 +118,7 @@ namespace Examination_system.Question
             {
                 for (int i = 0; i < questions.Length; i++)
                 {
-                    questions[i] = CreateQuestion(i);
+                    questions[i] = CreateQuestion(i, typeofexame);
                 }
             }
             return questions;
