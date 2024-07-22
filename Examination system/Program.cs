@@ -19,7 +19,7 @@ namespace Examination_system
             string userInput = Validations.ValidateMatchStrings("create", "solve");
             Console.Clear();
 
-            if (userInput.CompareTo("solve") < 0)
+            if (userInput.CompareTo("create") == 0)
             {
                 // ================================ Create Subject =================================
 

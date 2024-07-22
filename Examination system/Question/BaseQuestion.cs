@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Examination_system.Question
 {
-    public class BaseQuestion
+    public abstract class BaseQuestion
     {
         public string? Header { get; set; }
         public string? Body { get; set; }
@@ -27,22 +27,38 @@ namespace Examination_system.Question
             this.Answer=Answers;
             this.RightAnswer = RightAnswer;
         }
-        public void displayQuestion()
+        public void displayQuestion(int index)
         {
-            Console.WriteLine($"{Header} Question :\n=======================\n{Body}\n");
+            
+            Console.WriteLine($"Question {index+1} : {Header} \n===========================\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"{Body}\n");
             Answers.DisplayAnswersArray(Answer);
             Console.WriteLine();
+            
+            Console.ResetColor();
         }
         public static BaseQuestion CreateQuestion(int index)
         {
-            Console.WriteLine($"Enter Header of Question {index + 1} if it will be (MCQ - True or False)");
+
+            Console.WriteLine($"Enter Header of Question {index + 1} if it will be ( MCQ - True or False )");
+            
             string Header = Validations.ValidateMatchStrings("mcq", "true or false");
+
             Console.WriteLine("Enter the question");
+            
+            Console.ForegroundColor = ConsoleColor.Red;
             string body = Validations.ValidateStrings();
+            Console.ResetColor();
+
             Console.Clear();
 
             Console.WriteLine("Enter the Mark of this question");
+
+            Console.ForegroundColor = ConsoleColor.Red;
             int mark = Validations.ValidateNumbers();
+            Console.ResetColor();
+
             Console.Clear();
 
             Answers[] answers ;
@@ -51,29 +67,46 @@ namespace Examination_system.Question
             {
                 answers = Answers.CreateMCQAnswers();
                 Console.WriteLine("Enter the Number of Right Answer for this question from ( 1 , 2 , 3 ,4 )");
+
+                Console.ForegroundColor = ConsoleColor.Red;
                 rightanswer = Validations.ValidateRightAnswerNumber(false);
+                Console.ResetColor();
+
+                Console.Clear();
+                return new MCQQuestion()
+                {
+                    Header = Header,
+                    Body = body,
+                    Mark = mark,
+                    Answer = answers,
+                    RightAnswer = rightanswer
+                };
 
             }
             else
             {
                 answers = Answers.CreateTrueFalseAnswer();
-                Console.WriteLine("Enter the Number of Right Answer for this question (1- True , 2- False)");
-                rightanswer = Validations.ValidateRightAnswerNumber(true);
-            }
-            Console.Clear();
+                Console.WriteLine("Enter the Number of Right Answer for this question ( 1- True , 2- False )");
 
-            return new BaseQuestion()
-            {
-                Header = Header,
-                Body = body,
-                Mark = mark,
-                Answer = answers,
-                RightAnswer = rightanswer
-            };
+                Console.ForegroundColor = ConsoleColor.Red;
+                rightanswer = Validations.ValidateRightAnswerNumber(true);
+                Console.ResetColor();
+
+                Console.Clear();
+                return new TrueFalseQuestion()
+                {
+                    Header = Header,
+                    Body = body,
+                    Mark = mark,
+                    Answer = answers,
+                    RightAnswer = rightanswer
+                };
+            }
         }
         public static BaseQuestion[] CreateQuestionsArray(int size)
         {
             BaseQuestion [] questions = new BaseQuestion[size];
+            
             if (size > 0)
             {
                 for (int i = 0; i < questions.Length; i++)

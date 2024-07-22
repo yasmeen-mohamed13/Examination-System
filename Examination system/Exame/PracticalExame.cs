@@ -13,7 +13,7 @@ namespace Examination_system.Exame
         public BaseQuestion[]? Questions { get; set; }
         public PracticalExame()
         {
-            MCQQuestions = new MCQQuestion[0];
+            Questions = new BaseQuestion[0];
         }
         public PracticalExame(int Time,int NumOfQuestions, BaseQuestion[]questions):base(Time,NumOfQuestions)
         {
@@ -32,7 +32,7 @@ namespace Examination_system.Exame
             {
                 for (int i = 0; i < Questions.Length; i++)
                 {
-                    Questions[i].displayQuestion();
+                    Questions[i].displayQuestion(i);
                     Console.WriteLine("Enter Your Answer ");
                     Console.WriteLine($"The Right Answer is : {Questions[i].RightAnswer}");
                     Console.WriteLine("=======================================================");

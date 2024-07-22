@@ -27,7 +27,8 @@ namespace Examination_system.Helper
             //flag1 == true  ==> true false => size of answers 1, 2
             while (flag)
             {
-                result=ValidateNumbers();
+
+                result = ValidateNumbers();
                 if (flag1)
                 {
                     if (result==1 || result==2)
@@ -50,6 +51,7 @@ namespace Examination_system.Helper
                         Console.WriteLine("Number Should Be 1 or 2 or 3 or 4");
                     }
                 }
+
             }
             return result;
         }

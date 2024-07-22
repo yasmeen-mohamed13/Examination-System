@@ -40,12 +40,17 @@ namespace Examination_system.Answer
         public static Answers[] CreateMCQAnswers()
         {
             Answers[]answers=new Answers[4];
-            Console.WriteLine("Enter the Answers for this question ");
+            Console.WriteLine("Enter the 4 Answers for this question ");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+
             for (int j = 0; j < answers.Length; j++)
             {
                 Console.WriteLine($"Answer {j + 1}");
                 answers[j] = new Answers(j+1, Validations.ValidateStrings());
             }
+            Console.ResetColor();
+
             return answers;
         }
 
